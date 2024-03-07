@@ -1,0 +1,38 @@
+
+<button  class="btn btn-secondary" onclick="openFormUser()">Add User</button>
+<div id="formModalUser" class="form-modal" >
+            
+    <div class="form-modal-content">
+      <span class="form-modal-close" onclick="closeFormUser()">&times;</span>
+     
+      <form method="POST" action="/users" onsubmit="addUser(); return false;" class="p-3 mb-2 text-white">
+        
+        <label for="firstName" >First Name </label>
+        <input type="text" id="firstName" name="firstName" class="form-control">
+        
+        <label for="lastName" >Last Name </label>
+        <input type="text" id="lastName" name="lastName" class="form-control">
+        
+
+        <label id="email" for="email" >Email </label>
+        <input type="email" id="email" name="email" class="form-control">
+
+
+        <label for="telegram">Telegram </label>
+        <input type="text" id="telegram" name="telegram" class="form-control">
+
+        
+        <label  id="password" for="password" >Password </label>
+        <input type="text" id="password" name="password" class="form-control">
+        
+        
+        <input id="btn-add" class="btn btn-secondary" type="submit" value="Add User">
+     
+    </form>
+    
+    </div>
+</div>
+
+
+
+

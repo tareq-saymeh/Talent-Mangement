@@ -1,0 +1,96 @@
+<div class="container">
+    <%- include('../students/filterStudent'); %>
+    <%- include('../students/searchStudent'); %>  
+    <table id="tableStudent" class="table table-striped pos-table">
+        <thead class="pos-table-th">
+            <th className="thead-values-id">ID</th>
+            <th className="thead-values-company">NAME</th>
+            <th className="thead-values-company">STUDENT ID</th>
+            <th className="thead-values-date">SKILLS</th>
+            <th className="thead-values-type">MAJOR</th>
+            <th className="thead-values-status">GPA</th>
+            <th className="thead-values-state">LEVEL</th>
+            <th className="thead-values-button">Delete</th>
+            <th className="thead-values-edit">Edit</th>
+        </thead>
+        <% for (var i = 0; i < items.length; i++) { %>
+        <tr className="trNostu.<%= i+1 %>" id="trStu">
+            <td><%= i+1 %></td>
+            <td><%= items[i].name %></td>
+            <td><%= items[i].studentId%></td>
+            <td>
+                <button class="pos-table-btn" type="button" id="dropdown-buttonm" data-bs-toggle="dropdown" aria-expanded="false">
+                    Skills 
+                    </button>
+                    <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton" name="skills" >
+                    <% for (var r=0; r < items[i].skills.length; r++)  { %>
+                        <li><label class="dropdown-item " name="skills"value="<%= items[i].skills[r].name %>"><%=items[i].skills[r].name%></label></li>
+                        <% } %>
+                    </ul>
+                </td>
+            
+            <td><%= items[i].major %>
+                <% if ( items[i].major ==  "") { %>
+                    <%= items[i].major = "Available"%>
+                        <% } %>
+            </td>
+            <td><%= items[i].gpa %></td>
+            <td><%- items[i].level.charAt(0).toUpperCase() + items[i].level.slice(1) %>‏</td>
+            <td><button class="pos-table-btn" onclick="deleteStudents('<%= items[i].id %>')">DELETE</button></td>
+            <td><button class="pos-table-btn" onclick="editStudent('<%= items[i].id %>')">EDIT</button></td>
+        </tr>
+        <% } %>
+    </table>
+
+
+
+
+    <div id="StudentPopUp" style="display:none;">
+        
+
+        <form method="POST" action="/students" class="p-3 mb-2 text-white editStudentTable">
+            <input id="editStudID" class="form-control" type="hidden" name="editStudID">
+            <label for="newStudName">Change Student Name</label>
+            <input id="newStudName" class="form-control" type="text" name="newStudName">
+            
+
+            <label for="studSkillsDrop">Choose the Acquired Skills :</label>
+           <br>
+            <select id="studSkillsDrop" class="form-select select2Student" multiple name="studSkillsDrop">
+                <% for (var i=0; i < skills.length; i++) { %>
+                  <option value="<%= skills[i]._id %>"><%=skills[i].name%></option>
+                  <% } %>
+              
+              </select>
+              <br>
+
+            <label for="Major">Change Major </label>
+            <input id="Major" class="form-control" type="text" name="Major">
+            
+            <label for="changeStudentID">Change Student ID :</label>
+        <input type="text" class="form-control"id="changeStudentID" name="changeStudentID">
+
+
+            <label for="GPA">Update GPA : </label>
+                <input type="number" class="form-control" id="GPA" name="GPA" min="0"
+                    max="4" step="0.01">
+                
+                <label for="level">Change Level :</label>
+                <select id="level" class="form-control" name="level">
+                    <option value="freshman">Freshman</option>
+                    <option value="sophomore">Sophomore</option>
+                    <option value="junior">Junior</option>
+                    <option value="senior">Senior</option>
+                </select>
+
+            <button type="submit" class="btn btn-primary" onclick="closeEditStud()" >Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditStud()" >Close</button>
+
+
+
+        </form>
+    
+    
+</div>
+
+</div>

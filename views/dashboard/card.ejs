@@ -1,0 +1,23 @@
+  <%for(let i=0; i<info.length ;i++){ %>
+    <div class="container">
+      <div class="card-pos">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card-img">
+              <i class="fas <%= info[i].icon %>"></i>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="card-content">
+              <h3>
+                <%= info[i].cardTitle %>
+              </h3>
+              <h1>
+                <%= info[i].counter %>
+              </h1>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+    <% } %>

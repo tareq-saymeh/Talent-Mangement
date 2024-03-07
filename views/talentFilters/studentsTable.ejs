@@ -1,0 +1,59 @@
+<%- include('../partials/header'); %>
+<div class="sidebar-side">
+    <%- include('../partials/sidebar'); %>
+</div>
+<div class="contant-side">
+    <div class="navbar-div ">
+        <%- include('../partials/navbar'); %>
+</div>
+<div class="container">
+    <%- include('./filterStudents'); %>
+    <table id="tableStudent" class="table table-striped pos-table">
+        <thead class="pos-table-th">
+            <th className="thead-values-id">ID</th>
+            <th className="thead-values-company">NAME</th>
+            <th className="thead-values-company">STUDENT ID</th>
+            <th className="thead-values-date">SKILLS</th>
+            <th className="thead-values-type">MAJOR</th>
+            <th className="thead-values-company">AVAILABLE POSITION</th>
+            <th className="thead-values-status">GPA</th>
+            <th className="thead-values-state">LEVEL</th>
+        </thead>
+        <% for (var i = 0; i < items.length; i++) { %>
+        <tr>
+            <td><%= i+1 %></td>
+            <td><%= items[i].name %></td>
+            <td><%= items[i].studentId%></td>
+            <td>
+            <button class="pos-table-btn" type="button" id="dropdown-buttonm" data-bs-toggle="dropdown" aria-expanded="false">
+                 Skills 
+              </button>
+              <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton" name="skills" >
+                <% for (var r=0; r < items[i].skills.length; r++)  { %>
+                  <li><label class="dropdown-item " name="skills"value="<%= items[i].skills[r].name %>"><%=items[i].skills[r].name%></label></li>
+                  <% } %>
+              </ul>
+            </td>
+            <td><%= items[i].major %></td>
+            <td>
+                <button class="pos-table-btn" type="button" id="dropdown-buttonm" data-bs-toggle="dropdown" aria-expanded="false">
+                    Available Position
+                </button>
+                <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton" name="skills">
+                <%if(items[i].postitle.length==0){ %>
+                    <li><label class="dropdown-item " name="skills"value="No Position">No Position</label></li>
+                    <%} else { %>
+                            <% for (var r=0; r < items[i].postitle.length ; r++) { %>
+                    <li><label class="dropdown-item " name="skills"value="<%= items[i].postitle %>" ><%=items[i].postitle[r]%></label></li>
+                            <% } %>
+                    <% } %>
+                    </ul>
+                </td>
+            
+            <td><%= items[i].gpa %></td>
+            <td><%- items[i].level.charAt(0).toUpperCase() + items[i].level.slice(1) %>‏ </td>
+        </tr>
+        <% } %>
+    </table>
+</div>
+<script src="/js/script.js"></script>

@@ -1,0 +1,51 @@
+
+<button class="btn btn-secondary" onclick="openFormStudent()">Add Student</button>
+<div id="formModalStu" class="form-modal" >
+            
+    <div class="form-modal-content">
+        <span class="form-modal-close" onclick="closeFormStudent()">&times;</span>
+    
+        <form method="POST" action="/students" onsubmit="addStudent(); return false;" class="p-3 mb-2 text-white">
+        
+    
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" class="form-control">
+
+        <label for="studentID">Student Id </label>
+        <input type="text" id="studentID" name="studentID" class="form-control">
+        
+        <label for="major">Major</label>
+        <input type="text" id="major" name="major" class="form-control">
+        
+       
+        <label for="studSkillsDrop1">Choose the Acquired Skills </label><br>
+        <div id="addStudentButton">
+        <select id="studSkillsDrop1" class="form-select select2Student" multiple name="studSkillsDrop">
+            <% for (var i=0; i < skills.length; i++) { %>
+              <option value="<%= skills[i]._id %>"><%=skills[i].name%></option>
+              <% } %>
+          
+          </select>
+        </div>
+          <br>
+        
+
+    
+        <label for="gpa" >GPA </label>
+        <input type="number" class="form-control" id="gpa" name="gpa" min="0"max="4" step="0.01">
+        
+        <label for="level" >Level</label>
+        <select id="level" class="form-control" name="level">
+            <option value="freshman">Freshman</option>
+            <option value="sophomore">Sophomore</option>
+            <option value="junior">Junior</option>
+            <option value="senior">Senior</option>
+        </select>
+
+
+        <input id="btn-add" type="submit" class="btn btn-secondary" value="Add Student">     
+    </form>
+    
+    </div>
+</div>
+

@@ -1,0 +1,24 @@
+<div class="container">
+    <table id="tableStudent" class="table table-striped pos-table">
+        <thead class="pos-table-th">
+            <th className="thead-values-company">POSITION</th>
+            <th className="thead-values-company">STUDENT ID</th>
+            <th className="thead-values-company">ACCEPT</th>
+            <th className="thead-values-company">DECLINE</th>
+        </thead>
+        <%  if(positions)
+            for (let i = 0; i < positions.length; i++) {
+            if (positions[i].requestStudent) {
+                if(positions[i].status== false){
+                for (let q = 0; q < positions[i].requestStudent.length; q++) { %>
+                    <tr>
+                        <td><%= positions[i].title %></td>
+                        <td><%= positions[i].requestStudent[q] %></td>
+                        <td><a class="pos-table-btn" href='/requests/<%=positions[i].title%>/<%= positions[i].requestStudent[q] %>'>ACCEPT</a></td>
+                        <td><a class="pos-table-btn" href="/requests/decline/<%=positions[i].title%>/<%=q%>">DECLINE</a></td>
+                    </tr>
+                <% }
+            }}
+        } %>
+    </table>
+</div>

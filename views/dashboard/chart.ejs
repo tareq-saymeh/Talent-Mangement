@@ -1,0 +1,66 @@
+<div id="chart-container">
+  <canvas id="myPieChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const dataArr =  "<%= chartData %>".split(",")
+  const labels = ['Sophomore', 'Junior','Senior', 'Freshman' ];
+  var ctx = document.getElementById('myPieChart').getContext('2d');
+  var myPieChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+     labels: labels,
+      datasets: [{
+        label: 'Types of Students',
+        data: dataArr,
+        backgroundColor: [
+          'rgb(67,78,118)',
+          'rgb(111,137,162)',
+          'rgb(142,148,172)',
+          'rgb(198,201,213)'
+        ],
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true
+    }
+  });
+</script>
+<div id="skillsChart-container">
+  <canvas id="skillsChart"></canvas>
+ </div>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script>
+   const skillsObject="<%=skillsObject%>".split(",");
+   var ctx = document.getElementById('skillsChart').getContext('2d');
+   var skillsChart = new Chart(ctx, {
+     type: 'pie',
+     data: {
+       labels: skillsObject,
+       datasets: [{
+         label: 'Number Of Student Who Know This Skill',
+         data:"<%= skillNumbers %>".split(","),
+         backgroundColor: [
+           'rgb(81,115,145)',
+           'rgb(126,148,167)',
+           'rgb(164,180,193)',
+           'rgb(191,202,211)',
+           'rgb(152,161,168)',
+           'rgb(91,96,100)',
+           'rgb(63,79,93)',
+           'rgb(180,209,237)',
+           'rgb(221,234,247)',
+           'rgb(189,207,222)',
+           'rgb(64,80,95)',
+           'rgb(91,135,173)',
+           'rgb(210,227,244)'
+         ],
+         hoverOffset: 4
+       }]
+     },
+     options: {
+       responsive: true
+     }
+   });
+ </script>

@@ -1,0 +1,21 @@
+<div class="container">
+    <table id="tableStudent" class="table table-striped pos-table">
+        <thead class="pos-table-th">
+            <th className="thead-values-company">POSITION</th>
+            <th className="thead-values-company">TRAINEER NAME</th>
+            <th className="thead-values-company">ADDED BY</th>
+            <th className="thead-values-company">REMOVE</th>
+        </thead>
+        <% 
+        if(Trainees)
+        for (let i = 0; i < Trainees.length ; i++) {%>
+                    <tr>
+                        <td><%= Trainees[i][3] %> </td>
+                        <td><%= Trainees[i][0] %></td>
+                        <td><%= Trainees[i][1] %> <%= Trainees[i][2] %> </td>
+                        <td><a class="pos-table-btn" href="/trainees/<%= i %> %>">Remove</a></td>
+                    </tr>
+                <% 
+        } %>
+    </table>
+</div>

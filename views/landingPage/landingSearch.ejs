@@ -1,0 +1,25 @@
+<%- include('./landingPage-NavBar.ejs'); %>
+<div class="row gx-4 gx-lg-5 mx-3">
+    <% if (positions.length> 0) { %>
+        <% for (let i=0; i < positions.length; i++) { %>
+            <div class="col-md-4 mb-5">
+                <div class="card h-100">
+                    <div class="card-body align-items: stretch;">
+                        <h2 class="card-title"><%= positions[i].title %> </h2>
+                            <p class="card-text">
+                                <% let desc=positions[i].discruption %> 
+                                <%= desc.slice(0, 180) + "..." %>
+                            </p>
+                    </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" id="<%= i %>" onclick="myFunction()"
+                                href="/landingPos/<%= i %>">More Info</a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                    <% } else { %>
+                        <p>No positions found.</p>
+                    <% } %>
+</div>
+<%- include('./footer.ejs'); %>

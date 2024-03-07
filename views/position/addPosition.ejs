@@ -1,0 +1,42 @@
+
+<button class="btn btn-secondary" onclick="openFormPosition()">Add Position</button>
+<div id="formModalPos" class="form-modal" >
+            
+    <div class="form-modal-content">
+     
+      <span class="form-modal-close" onclick="closeFormPosition()">&times;</span>
+     
+      <form method="POST" action="/position" onsubmit="addPosition(); return false;" class="p-3 mb-2 text-white" >
+        
+        <label for="title" >Title</label>
+        <input type="text" id="title" name="title" class="form-control" ><br>
+        <label for="discruption" >Description</label>
+        <input type="text" id="discruption" name="discruption" class="form-control" ><br>
+
+        <label for="positionExpreance" >Years Of Experience</label>
+        <input type="number" class="form-control" id="positionExpreance" name="positionExpreance" min="1"
+            max="10">
+        <br>
+
+        <label for="skillsDrop">Required Skills:</label><br>
+        <div id="addPositionSelect">
+        <select multiple id="skillsDrop" class="select2Student" name="skillsDrop">
+            <% for (var i=0; i < skills.length; i++) { %>
+                <option value="<%= skills[i]._id %>" class="form-control" >
+                    <%=skills[i].name%>
+                </option>
+    
+                <% } %>
+        </select>
+    </div>
+        <br>
+        
+        
+    
+
+        <input id="btn-add" class="btn btn-secondary" type="submit" value="Add Position" >
+     
+    </form>
+    
+    </div>
+</div>

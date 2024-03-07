@@ -1,0 +1,35 @@
+<form action="/filterPage" method="GET" class="filter">
+  <div class="fillterPageSelect">
+  <label for="skillsSelect2FillterPage" class="changecolor">Choose Skills:</label>
+  </div>
+  <select id="skillsSelect2FillterPage" class="form-select select2Student" multiple name="skills1">
+    <% for (var i=0; i < skills.length; i++) { %>
+      <option value="<%= skills[i]._id %>"><%=skills[i].name%></option>
+      <% } %>
+  
+  </select>
+
+  <div class="status-input" id="level-input">
+    <label for="level"></label>
+    <select class="form-select" name="logic" required >
+      <option selected value="" >AND/OR</option>
+      <option  value="or" >OR</option>
+      <option value="and"  >AND</option>
+    </select>
+    </div>
+    &#160;
+    &#160;
+    &#160;
+    <div class="fillterPageSelect">
+    <label for="skillsSelect2FillterPage2" class="changecolor">Choose Skills:</label>
+  </div>
+    <select id="skillsSelect2FillterPage2" class="form-select select2Student" multiple name="skills2">
+      <% for (var i=0; i < skills.length; i++) { %>
+        <option value="<%= skills[i]._id %>"><%=skills[i].name%></option>
+        <% } %>
+    
+    </select>
+  
+    <button type="submit" class="btn btn-secondary" id="button-filter" > Search</button>
+</form>
+<script src="/js/fillterPage.js"></script>

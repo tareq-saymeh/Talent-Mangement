@@ -1,0 +1,60 @@
+
+<div class="container">
+    <div class="table-responsive">
+        <table id="tableUser" class="table table-striped pos-table">
+            <thead class="pos-table-th">
+                <th className="thead-values-ID">ID</th>
+                <th className="thead-values-first name">FIRST NAME</th>
+                <th className="thead-values-last name">LAST NAME</th>
+                <th className="thead-values-email">EMAIL</th>
+                <th className="thead-values-telegram">TELEGRAM</th>
+                <th className="thead-values-button">Delete</th>
+                <th className="thead-values-edit">Edit</th>
+            </thead>
+            <% for (var i = 0; i < items.length; i++) { %>
+                <tr Id="trNouser.<%= i+1 %>">
+                    <td><%= i+1 %></td>
+                    <td><%= items[i].firstName %></td>
+                    <td><%= items[i].lastName %></td>
+                    <td><%= items[i].email %></td>
+                    <td><%= items[i].telegram %></td>
+                    <td><button class="pos-table-btn" onclick="deleteusers('<%= items[i].id %>')">DELETE</button></td>
+                    <td><button class="pos-table-btn" onclick="editUser('<%= items[i].id %>')">EDIT</button></td>
+
+                </tr>
+                <% } %>
+            </table>
+          
+          
+            <div id="UserPopUp" style="display:none;">
+        
+
+                <form method="POST" action="/users" class="p-3 mb-2 text-white">
+                    <input id="editUserId" class="form-control" type="hidden" name="editUserId">
+                    <label for="userFirstName">Change User First Name</label>
+                    <input id="userFirstName" class="form-control" type="text" name="userFirstName">
+                    
+                    <label for="userLastName">Change User Last Name</label>
+                    <input id="userLastName" class="form-control" type="text" name="userLastName">
+                    
+                    <label for="newUserEmail">Change User Email</label>
+                    <input id="newUserEmail" class="form-control" type="text" name="newUserEmail">
+                    
+                    <label for="editTelegram">Change User Telegram</label>
+                    <input id="editTelegram" class="form-control" type="text" name="editTelegram">
+                    
+                    <button type="submit" class="btn btn-primary" onclick="closeEditUser()" >Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEditUser()" >Close</button>
+        
+                    
+            
+                </form>
+        
+            
+        </div>
+    </div>
+</div>
+
+
+ 
+</script></form>

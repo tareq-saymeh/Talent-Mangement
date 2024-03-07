@@ -1,0 +1,105 @@
+<div class="container">
+    <%- include('../position/filterPosition.ejs'); %>
+    <%- include('../position/search'); %>
+    <table id="tablePositions" class="table table-striped pos-table">
+        <thead class="pos-table-th">
+            <th className="thead-values-id">ID</th>
+            <th className="thead-values-company">TITLE</th> 
+            <th className="thead-values-discruption">Description</th>
+            <th className="thead-values-date">REQUIRED SKILLS</th>
+            <th className="thead-values-state">YEARS OF EXPERIENCE</th>
+            <th className="thead-values-status">STATUS</th>
+            <th className="thead-values-type">Created</th>
+            <th className="thead-values-button">Search</th>
+            <th className="thead-values-button">Delete</th>
+            <th className="thead-values-edit">Edit</th>
+        </thead>
+        <% for (var i=0; i < items.length; i++) { %>
+            <tr>
+                <td>
+                    <%= i+1 %>
+                </td>
+                <td>
+                    <%= items[i].title %>
+                </td>
+                <td>
+                    <%= items[i].discruption %>
+                </td>
+
+                <td>
+                    <button class="pos-table-btn" type="button" id="dropdown-buttonm" data-bs-toggle="dropdown" aria-expanded="false">
+                            Skills 
+                    </button>
+                    <ul class="dropdown-menu"  aria-labelledby="dropdownMenuButton" name="skills" >
+                        <% for (var r=0; r < items[i].requiredSkills.length; r++)  { %>
+                        <li><label class="dropdown-item " name="skills"value="<%=  items[i].requiredSkills[r].name %>"><%= items[i].requiredSkills[r].name%></label></li>
+                        <% } %>
+                    </ul>
+                    </td>
+                <td>
+                    <%= items[i].yearsOfExperience %>
+                </td>
+                <% switch (items[i].status) { case false: %>
+                    <td>Close</td>
+                    <% break; case true : %>
+                        <td>Open</td>
+                            <%  break; } %>
+                                <td>
+                                    <%=items[i].createdAt.toLocaleDateString()%>
+                                </td>
+                                <td><form action="/students" method="get"><input type="text" hidden value='<%= items[i].id %>' name="positionID"><button type="submit" class="pos-table-btn" >Search</button></form></td>
+                                <td><button class="pos-table-btn"  onclick="deletePosition('<%= items[i].id %>')" >DELETE</button></td>
+                                <td><button class="pos-table-btn" class="editButton"
+                                        onclick="editPosition('<%= items[i].id%>')">
+                                        Edit
+                                    </button></td>
+            </tr>
+            <% } %>
+    </table>
+    <div id="positionPopUp" style="display:none;">
+        
+
+            <form method="POST" action="/position" class="p-3 mb-2 text-white editPositionTable">
+                <input id="targetTitle" class="form-control" type="hidden" name="target">
+                
+                <label for="newTitle">Add New Title</label>
+                <input id="newTitle" class="form-control" type="text" name="newTitle">
+                <label for="newDiscruption">Add New Description</label>
+                <input id="newDiscruption" class="form-control" type="text" name="newDiscruption">
+
+                <label for="skillsDropEdit">Choose the Required Skills :</label>
+                <br>
+                <select multiple id="skillsDropEdit" class="form-control select2Student " name="skillsDropEdit">
+                    <% for (var i=0; i < skills.length; i++) { %>
+
+                        <option value="<%= skills[i]._id %>" class="form-control">
+                            <%=skills[i].name%>
+                        </option>
+
+                        <% } %>
+                </select>
+                <br>
+
+                <label for="positionExpreanceEdit">Years of expreance :</label>
+                <input type="number" class="form-control" id="positionExpreanceEdit" name="positionExpreanceEdit" min="1"
+                    max="10">
+                
+
+
+                <label for="Status">Status :</label>
+                <select id="Status" class="form-control" name="Status">
+                    <option>Choose Status:</option>
+                    <option value="false"> Open </option>
+                    <option value="true">Close</option>
+                </select>
+
+                
+                <button type="submit" class="btn btn-primary" onclick="closeEdit()" >Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEdit()" >Close</button>
+
+            </form>
+        
+        
+    </div>
+    
+</div>

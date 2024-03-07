@@ -1,0 +1,17 @@
+<%- include('../partials/header'); %>
+    <div class="sidebar-side">
+        <%- include('../partials/sidebar'); %>
+    </div>
+    <div class="contant-side">
+        <div class="navbar-div ">
+            <%- include('../partials/navbar'); %>
+        </div>
+        <div class="show-div">
+                <%- include('../users/addUser'); %>
+                    <%- include('../users/tableUsers'); %>
+                    <%- include('../position/pagination.ejs'); %> 
+        </div>
+        <script src="/js/users.js"></script>
+        <script src="/js/script.js"></script>
+
+    </div>

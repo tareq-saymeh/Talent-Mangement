@@ -1,0 +1,38 @@
+
+<form action="/position" method="GET" class="filter">
+<div class="position-input">
+<label for="position-name" class="changecolor">Position title:</label>
+<select class="form-select"  id="position-name" name="title">
+  <option selected>Choose Position:</option>
+  <% for (var i=0; i < items.length; i++) { %>
+    <option value="<%= items[i].title %>"  >
+        <%=items[i].title%>
+    </option>
+    <% } %>
+</select>
+</div>
+<label for="skillsSelect2Position" class="changecolor" id="fillterSkillsPosition">Skills:</label>
+<br>
+<div class="select2Div">
+  <select id="skillsSelect2Position" class="form-select select2Student" multiple name="skills" aria-placeholder="Select Skills">
+    <% for (var i=0; i < skills.length; i++) { %>
+      <option value="<%= skills[i]._id %>"><%=skills[i].name%></option>
+      <% } %>
+  
+  </select>
+
+</div>
+<div class="years-input">
+    <label for="years"> Experience:</label>
+<input  type="number" class="form-control" id="years"   name="experience" min="0" max="10"/>
+    </div>
+    <div class="status-input" >
+        <label for="status">Status:</label>
+        <select class="form-select"   name="status">
+          <option selected >Choose status:</option>
+          <option value="true" >Open </option>
+          <option value="false"  >Close</option>
+        </select>
+        </div>
+            <button type="submit" class="btn btn-secondary" id="button-filter" > Search</button>
+</form>

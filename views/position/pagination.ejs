@@ -1,0 +1,93 @@
+<!-- <div class="position-absolute bottom-0 start-50 translate-middle-x">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <a class="page-link" href="#">Previous</a>
+            </li>
+            <% for(let i = 1; i <= 3; i++) { %>
+                <li class="page-item"><a class="page-link" href="#"><%= i %></a></li>
+            <% } %>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+                
+            </li>
+        </ul>
+    </nav>
+</div> -->
+
+
+<!-- <form>
+
+<script>
+    connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+$('#demo').pagination({
+    // dataSource: 'mongodb+srv://TeamMembers:ProjectTeam1414AACC@talentmanage.pwoo8qp.mongodb.net/talentManagement',
+    
+    locator: 'items',
+    totalNumber: 120,
+    pageSize: 5,
+    ajax: {
+        beforeSend: function() {
+            dataContainer.html('Loading data from flickr.com ...');
+        }
+    },
+    callback: function(data, pagination) {
+        // template method of yourself
+        var html = template(data);
+        dataContainer.html(html);
+    }
+})
+</script>
+</form> -->
+<!-- <form ><script>
+    app.get("/users", async function (request, result) {
+    
+        // number of records you want to show per page
+        var perPage = 5;
+    
+        // total number of records from database
+        var total = await database.collection("users").count();
+    
+        // Calculating number of pagination links required
+        var pages = Math.ceil(total / perPage);
+    
+        // get current page number
+        var pageNumber = (request.query.page == null) ? 1 : request.query.page;
+    
+        // get records to skip
+        var startFrom = (pageNumber - 1) * perPage;
+    
+        // get data from mongo DB using pagination
+        var users = await database.collection("users").find({})
+            .sort({ "id": -1 })
+            .skip(startFrom)
+            .limit(perPage)
+            .toArray();
+    
+        // render an HTML page with number of pages, and users data
+        result.render("index", {
+            "pages": pages,
+            "users": users
+        });
+    });
+    </script></form> -->
+
+
+
+
+
+
+    <form>
+        <script>
+            const user =document.getElementById("trStu");
+            class UserPaginationExample {
+        getAll(limit = 5, skip = 1) {
+            return UsersModel.aggregate([
+                { $match: {user} },    // This is your query
+                { $skip: skip },   // Always apply 'skip' before 'limit'
+                { $limit: 20 }, // This is your 'page size'
+            ])  
+        }
+    }
+        </script>
+    </form>

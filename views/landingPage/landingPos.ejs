@@ -1,0 +1,44 @@
+<%- include('./landingPage-NavBar.ejs'); %>
+    <div class="col-md-12 mb-5">
+        <div class="card h-1idid">
+            <form class="card-body" action="/RequestSubmit/<%= id %>" method="get">
+                <h2>
+                    <%= positions[id].title %>
+                </h2>
+                <h4> <%= CompanyName %></h3>
+                <br>
+                <p> Description</p>
+                    <% let desc = positions[id].discruption %>
+                    <pre> <%=desc %> </pre>
+                    <br>
+                <h4> Required </h4>
+                <h6> years of experience :<%=" "+ positions[id].yearsOfExperience%></h6>
+                <br>
+                <div class="row">
+                    <div class="col">
+                    <strong>Required Skills:</strong>
+                    <% for( let index=0;index<positions[id].requiredSkills.length;index++){
+                        for(let s=0;s<Skill.length;s++){
+                            if( positions[id].requiredSkills[index].toString()==Skill[s]._id){
+                        %>
+                        <h6> <%= Skill[s].name  %></h6>
+                        <% }}} %>
+                        </div>
+                        <div class="col">
+                            <h4>Your Compatibility percentage </h4>
+                            <%if(percent==100){%>
+                                <h5>You can request training</h5>
+                            <div class="pie animate no-round" style="--p:<%=percent%>;--c:#4abb66"> <%=percent%>%</div>
+                                <%} else if(percent>60&&percent<100){%>
+                                <h5>You should learn some skills</h5>
+                            <div class="pie animate no-round" style="--p:<%=percent%>;--c:#f48451"> <%=percent%>%</div>
+                                    <%}else {%>
+                                    <h5>You cant send request</h5>
+                                        <div class="pie animate no-round" style="--p:<%=percent%>;--c:#C00E0E"> <%=percent%>%</div>
+                                        <%}%>
+                </div>
+            </form>
+        <div id="reqButon">
+        <button type="submit" id="request-training" class="btn btn-primary btn-sm">Submit a training request </button></div>
+    </div>
+<%- include('./footer.ejs'); %>

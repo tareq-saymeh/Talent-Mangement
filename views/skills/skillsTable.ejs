@@ -1,0 +1,41 @@
+<div class="container">
+    <%- include('../skills/filterSkills.ejs'); %> 
+    <table id="tableSkills" class="table table-striped pos-table">
+        <thead class="pos-table-th">
+            <th class="thead-values-id">ID</th>
+            <th class="thead-values-company">Name</th>
+            <th class="thead-values-date">DESCRIPTION</th>
+            <th class="thead-values-button">DELETE</th>
+            <th class="thead-values-edit">EDIT</th>
+        </thead>
+        <% for (var i = 0; i < items.length; i++) { %>
+        <tr>
+            <td><%= i+1%></td>
+            <td><%= items[i].name %></td>
+            <td><%= items[i].description %></td>
+            <td><button class="pos-table-btn"  onclick="deleteSkills('<%= items[i].id %>')">Delete</button></td>
+            <td><button class="pos-table-btn" class="editButton"
+                onclick="editSkill('<%= items[i].id %>')">
+                Edit
+            </button></td>
+        </tr>
+        <% } %>
+    </table>
+    <div id="skillsPopUp" style="display:none;">
+        <form method="POST" action="/skills" class="p-3 mb-2 text-white">
+            <input id="skillId" class="form-control" type="hidden" name="skillId">
+            <label for="newName">New Skill Name</label>
+            <input id="newName" class="form-control" type="text" name="newName">
+            
+            <label for="description">Change Description</label>
+            <textarea class="form-control" id="description" rows="5" name="skillDescription"></textarea>
+            
+            <button type="submit" class="btn btn-primary" onclick="closeEdit()">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeEdit()">Close</button>
+
+        </form>
+    
+    </div>
+    
+    
+</div>

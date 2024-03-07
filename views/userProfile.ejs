@@ -1,0 +1,94 @@
+
+<%- include('partials/header'); %>
+<div class="sidebar-side">
+    <%- include('./partials/sidebar.ejs'); %>
+</div>
+<div class="contant-side">
+    <div class="navbar-div ">
+    <%- include('./partials/navbar.ejs'); %></div>
+    <div class="show-div">
+        <div class="main-body">
+              <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="d-flex flex-column align-items-center text-center">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                        <div class="mt-3">
+                          <h4><%= userData.firstName %> <%= userData.lastName %></h4>
+                          <p class="text-secondary mb-1"><%= userData.email %></p>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="col-md-8">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <form action="/userProfile"method='post'>
+                      <h4>Edit profile</h4>
+                      <div class="row">
+                        <div class="col-sm-3">
+                          <h6 class="mb-0 my-4">First Name</h6>
+                        </div>
+                        
+                        <div class="col-sm-9 text-secondary">
+                          <input type="text" class="form-control my-3"name='firstName' id="firstNameInput" placeholder="<%= userData.firstName %>">
+                        </div>
+                        <div class="col-sm-3 my-4">
+                          <h6 class="mb-0">Last Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                          <input type="text" class="form-control my-3"name='lastName' id="lastNameInput" placeholder="<%= userData.lastName %>">
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3 my-4">
+                          <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="email" class="form-control"name='UserEmail' id="emailInput" placeholder="<%= userData.email %>">
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="row">
+                        <div class="col-sm-3 my-4">
+                          <h6 class="mb-0">Current password</h6>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="password"name='CurrentPassword' class="form-control mx-1" id="currentPasswordInput">
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-3 my-4">
+                            <h6 class="mb-0">New password</h6>
+                          </div>
+                          <div class="col-sm-3">
+                            <input type="password"name='NewPassword' class="form-control mx-2" id="newPasswordInput">
+                          </div>
+                          <div class="row">
+                            <div class="col-sm-3 my-4">
+                              <h6 class="mb-0">Confirm New password</h6>
+                            </div>
+                            <div class="col-sm-3">
+                              <input type="password"name='CoPassword' class="form-control mx-3" id="confirmNewPasswordInput">
+                            </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <button class="btn btn-info my-4"type='submit' id="profile-edit-btn">Confirm Edit</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+      

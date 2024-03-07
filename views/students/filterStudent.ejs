@@ -1,0 +1,28 @@
+
+<form action="/students" method="GET" class="filter">
+  <label for="skillsSelect2" id="LabelForSkillsFillterInStudnetPage"> Search Skills : </label>
+  <br>
+<select id="skillsSelect2" class="form-select select2Student" multiple name="skills">
+  <% for (var i=0; i < skills.length; i++) { %>
+    <option value="<%= skills[i]._id %>"><%=skills[i].name%></option>
+    <% } %>
+
+</select>
+<div class="years-input" id="GPA-input">
+  <label for="GPA"> GPA:</label>
+<input  type="number" class="form-control" id="GPA"  name="gpa" min="0" max="4"step="0.01"/>
+  </div>
+    
+          <div class="status-input" id="level-input">
+            <label for="level">Level:</label>
+            <select class="form-select"   name="level">
+              <option selected >Choose Level:</option>
+              <option value="freshman" >freshman </option>
+              <option value="junior"  >junior</option>
+              <option value="sophomore"  >sophomore</option>
+              <option value="senior"  >senior</option>
+            </select>
+            </div>
+            <button type="submit" class="btn btn-secondary" id="button-filter" > Search</button>
+    </form>
+   

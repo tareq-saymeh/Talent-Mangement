@@ -1,0 +1,47 @@
+<%- include('./landingPage-NavBar.ejs'); %>
+    <!-- Heading Row-->
+    <div class="row gx-4 gx-lg-5 align-items-center my-5 mx-5">
+        <div class="col-lg-7">
+            <img class="img-fluid rounded mb-4 mb-lg-0" src="/images/landingPageHead.png" alt="..." />
+        </div>
+        <div class="col-lg-5">
+            <h1 class="font-weight-light">Talento - Your Gateway to IT Employment</h1>
+            <p>Are you a student looking for an opportunity to train with a reputable company or seeking employment in the IT industry? Look no further than Talento! <br>
+                At Talento, we understand the challenges that students face when it comes to find suitable employment opportunities. That's why we have created a user-friendly platform that makes it easy for you to browse through various job vacancies and training programs.
+        </div>
+    </div>
+    <!-- Call to Action-->
+    <div class="card text-white my-5 py-4 text-center mx-5 top-pos">
+        <div class="card-body mx-5 ">
+            <p class="text-white m-0 text-top"><strong>Top 3 special positions</strong></p>
+        </div>
+    </div>
+    <!-- Content Row-->
+    <div class="row gx-4 gx-lg-5 mx-3">
+        <% if (positions.length> 0) { %>
+            <% for (let i=0; i < positions.length && i < 3; i++) { %>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body align-items: stretch;">
+                            <h2 class="card-title">
+                              <%= positions[i].title %>
+                            </h2>
+                            <p class="card-text">
+                              <% let desc = positions[i].discruption %>
+                              <%= desc.slice(0, 150) + "..." %>
+                            </p>
+                          </div>
+                        <div class="card-footer">
+                            <a class="btn btn-primary btn-sm" href="/landingPos/<%= i %>">More Info</a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                    <% } else { %>
+                        <p>No positions found.</p>
+                        <% } %>
+
+    </div>
+    <a type="button" href="/landingSearch" class="btn btn-secondary col-md-3 offset-md-3">Show More Positions</a>
+
+    <%- include('./footer.ejs'); %>

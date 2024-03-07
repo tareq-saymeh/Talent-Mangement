@@ -1,0 +1,142 @@
+<%- include('./navBar.ejs'); %>
+  <div class="Authlogin-box">
+    <div class="lb-AuthHeader">
+      <a href="#" class="active" id="login-box-link">Login</a>
+      <a href="#" id="signup-box-link">Sign Up</a>
+    </div>
+    <form class="email-login" action="/studentAuth" method="post">
+      <div class="u-form-group">
+        <input required type="email" placeholder="Email" name="signinEmail" />
+      </div>
+      <div class="u-form-group">
+        <input required type="password" placeholder="Password" name="signinPassword" />
+      </div>
+      <div class="u-form-group">
+        <button>Log in</button>
+      </div>
+    </form>
+    <form class="email-signup" action="/studentAuth" method="post">
+      <div class="u-form-group">
+        <input required type="email" placeholder="Email" name="signupEmail" />
+      </div>
+      <div class="u-form-group">
+        <input required type="text" pattern="[a-z A-Z]*" placeholder="Name" name="signupName" id="signupName" />
+      </div>
+      <div class="u-form-group">
+        <input required type="text" inputmode="numeric" pattern="[0-9]+" id="signupStudentId" placeholder="Student ID"
+          name="signupStudentId">
+      </div>
+      <div class="u-form-group">
+        <select required class="selectAuthSudent text-secondary" name="major" aria-placeholder="Level">
+          <option selected>Major</option>
+          <option value="CAP">CAP </option>
+          <option value="CS">CS</option>
+          <option value="CE">CE</option>
+          <option value="MIS">MIS</option>
+          <option value="NIS">NIS</option>
+        </select>
+      </div>
+      <div class="u-form-group">
+        <input required type="text" inputmode="decimal" pattern="([0-3](\.\d{0,2})?)|(\.0{0,2})|(4)" placeholder="GPA"
+          name="signupStudentGpa">
+      </div>
+      <div class="u-form-group">
+        <select required class="selectAuthSudent text-secondary" name="levelAuth" aria-placeholder="Level">
+          <option selected>Level</option>
+          <option value="freshman">Freshman </option>
+          <option value="junior">Junior</option>
+          <option value="sophomore">Sophomore</option>
+          <option value="senior">Senior</option>
+        </select>
+      </div>
+      <div id="u-form-group">
+        <button class="btn border border-white dropdown-toggle fs-6 fst-normal text-secondary" type="button"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          Skills
+        </button>
+        <ul class="dropdown-menu" id="skills-scroll" aria-labelledby="dropdownMenuButton2" name="skills">
+          <% for (var i=0; i < skills.length; i++) { %>
+            <li><label class="dropdown-item text-secondary"><input type="checkbox" name="skills"
+                  value="<%= skills[i]._id %>">
+                <%=skills[i].name%>
+              </label></li>
+            <% } %>
+        </ul>
+      </div>
+      <div class="u-form-group">
+        <input required type="password" placeholder="Password" name="signupPassword" />
+      </div>
+      <div class="u-form-group">
+        <input required type="password" placeholder="Confirm Password" name="signupRePassword" />
+      </div>
+      <div class="u-form-group">
+        <button>Sign Up</button>
+      </div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(".email-signup").hide();
+    $("#signup-box-link").click(function () {
+      $(".email-login").fadeOut(100);
+      $(".email-signup").delay(100).fadeIn(100);
+      $("#login-box-link").removeClass("active");
+      $("#signup-box-link").addClass("active");
+    });
+    $("#login-box-link").click(function () {
+      $(".email-login").delay(100).fadeIn(100);;
+      $(".email-signup").fadeOut(100);
+      $("#login-box-link").addClass("active");
+      $("#signup-box-link").removeClass("active");
+    });
+    $("#signupStudentId").on("keypress", function () {
+      let numbers = $(this).val().trim();
+      if (numbers[0]) {
+        if (numbers[0] !== '1' || numbers.length > 7) {
+          $(this).val(numbers.slice(0, -1));
+          $('.error').html("Error, Student ID has to start with number 1 and has to be 8 digits");
+        }
+        else {
+          $('.error').html("");
+        }
+      }
+    });
+    const numeric = document.querySelectorAll('[inputmode="numeric"]');
+    const decimal = document.querySelectorAll('[inputmode="decimal"]');
+    const name = document.getElementById('signupName');
+    numeric.forEach((input) => {
+      validateNumeric(input);
+    });
+    function validateNumeric(input) {
+      input.addEventListener('beforeinput', (e) => {
+        let beforeValue = e.target.value;
+        e.target.addEventListener('input', () => {
+          if (input.validity.patternMismatch) {
+            input.value = beforeValue;
+          }
+        }, { once: true })
+      });
+    }
+    decimal.forEach((input) => {
+      validateDecimal(input);
+    });
+    function validateDecimal(input) {
+      input.addEventListener('beforeinput', (e) => {
+        let beforeValue = e.target.value;
+        e.target.addEventListener('input', () => {
+          if (input.validity.patternMismatch) {
+            input.value = beforeValue;
+          }
+        }, { once: true })
+      });
+    }
+    name.addEventListener('beforeinput', (e) => {
+      let beforeValue = e.target.value;
+      e.target.addEventListener('input', () => {
+        if (name.validity.patternMismatch) {
+          name.value = beforeValue;
+        }
+      }, { once: true })
+    });
+  </script>
+  <%- include('../landingPage/footer.ejs'); %>
